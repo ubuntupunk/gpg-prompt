@@ -961,11 +961,8 @@ GnuPG  can  automatically locate and retrieve keys as needed using this option. 
        a formerly deleted key does not automatically gain an ownertrust values merely  due  to import.   On the other hand it is sometimes necessary to re-import  a  trusted  set  of  keys again  but keeping already assigned ownertrust values.  This can be achieved  by using  this option.
 
 *    `repair-pks-subkey-bug`
-       During  import,  attempt  to repair the damage caused by the PKS keyserver bug  (pre  version
-       0.9.6)  that  mangles  keys with multiple sub‐ keys. Note that this cannot completely  repair
-       the  damaged  key as some crucial data is removed by the keyserver, but it does  at  least
-       give  you back one subkey. Defaults to no for
-       regular `--import`  and  to yes  for  `keyserver --receive-keys`.
+       During  import,  attempt  to repair the damage caused by the PKS keyserver bug  (pre  version 0.9.6)  that  mangles  keys with multiple sub‐ keys. Note that this cannot completely  repair the  damaged  key as some crucial data is removed by the keyserver, but it does  at  least
+       give  you back one subkey. Defaults to no for regular `--import`  and  to yes  for  `keyserver --receive-keys`.
 `
 *    `import-show`
 *    `show-only`
@@ -978,11 +975,7 @@ GnuPG  can  automatically locate and retrieve keys as needed using this option. 
        During  import,  allow key updates to existing keys, but do not allow any new keys to be imported. Defaults to no.
 
 *    `import-clean`
-       After  import,  compact (remove all signatures except the self-signature) any user  IDs  from
-       the new key that are not usable.  Then, remove any signatures from the new key that  are not
-       usable.   This  includes  signatures that were issued by keys that are  not  present  on the
-       keyring.  This  option  is the same as running the `--edit-key` command "`clean`"  after  import.
-       Defaults to no.
+       After  import,  compact (remove all signatures except the self-signature) any user  IDs  from the new key that are not usable.  Then, remove any signatures from the new key that  are not usable.   This  includes  signatures that were issued by keys that are  not  present  on the keyring.  This  option  is the same as running the `--edit-key` command "`clean`"  after  import. Defaults to no.
 
 *    `self-sigs-only`
        Accept  only self-signatures while importing a key.  All other key signatures are skipped  at an  early import stage.  This option can be used with keyserver-options  to  mitigate at‐
@@ -1001,238 +994,136 @@ GnuPG  can  automatically locate and retrieve keys as needed using this option. 
 
 *    `--import-filter {name=expr}`
 *    `--export-filter {name=expr}`
-       These  options  define  an import/export filter which
-       are applied to the imported/exported  keyblock  right
-       before  it  will be stored/written.  name defines the
-       type of filter to use, expr the expression to  evalu‐
-       ate.  The option can be used several times which then
+       These  options  define  an import/export filter which are applied to the imported/exported  keyblock right before  it  will be stored/written.  name defines the type of filter to use, expr the expression to  evaluate.  The option can be used several times which then
        appends more expression to the same name.
 
        The available filter types are:
 
        `keep-uid`
-       This filter will keep a user id packet and its
-       dependent packets  in the keyblock if the ex‐
-       pression evaluates to true.
+       This filter will keep a user id packet and its dependent packets  in the keyblock if the expression evaluates to true.
 
        `drop-subkey`
-       This filter drops the selected subkeys.   Cur‐
-       rently only implemented for --export-filter.
+       This filter drops the selected subkeys.   Currently only implemented for --export-filter.
 
        `drop-sig`
-       This  filter drops the selected key signatures
-       on user ids.  Self-signatures are not  consid‐
-       ered.   Currently only  implemented for --im‐
+       This  filter drops the selected key signatures on user ids.  Self-signatures are not  considered.   Currently only  implemented for --im‐
        port-filter.
 
-       For the syntax of the expression see the chapter "FILTER EX‐
-       PRESSIONS".   The  property names for the expressions depend
-       on the actual filter type and are indicated in the following
+       For the syntax of the expression see the chapter "FILTER EXPRESSIONS".   The  property names for the expressions depend on the actual filter type and are indicated in the following
        table.
 
        The available properties are:
 
        `uid `   A string with the user id.  (keep-uid)
 
-       `mbox`   The  addr-spec  part of a user id with mailbox
-       or the empty string.  (keep-uid)
+       `mbox`   The  addr-spec  part of a user id with mailbox or the empty string.  (keep-uid)
 
        `key_algo`
-       A number with the public key  algorithm  of  a
-       key or subkey packet.  (drop-subkey)
+       A number with the public key  algorithm  of  a key or subkey packet.  (drop-subkey)
 
        `key_created`
        `key_created_d`
-       The  first  is  the  timestamp a public key or
-       subkey packet was created.  The second is the
-       same   but   given  as  an  ISO  string,  e.g.
-       "2016-08-17". (drop-subkey)
+       The  first  is  the  timestamp a public key or subkey packet was created.  The second is the same   but   given  as  an  ISO  string,  e.g.
+       "`2016-08-17". (drop-subkey)`
 
-       `fpr`    The hexified fingerprint of the current subkey
-       or primary key.  (drop-subkey)
+       `fpr`    The hexified fingerprint of the current subkey or primary key.  (drop-subkey)
 
        `primary`
-       Boolean  indicating whether the user id is the
-       primary one.  (keep-uid)
+       Boolean  indicating whether the user id is the primary one.  (keep-uid)
 
        `expired`
-       Boolean indicating whether a  user  id  (keep-
-       uid),  a  key  (drop-subkey),  or a signature
-       (drop-sig) expired.
+       Boolean indicating whether a  user  id  (`keep-uid`),  a  key  (`drop-subkey`),  or a signature
+       (`drop-sig`) expired.
 
        `revoked`
-       Boolean indicating whether a  user  id  (keep-
-       uid) or a key (drop-subkey) has been revoked.
+       Boolean indicating whether a  user  id  (`keep-uid`) or a key (`drop-subkey`) has been revoked.
 
        `disabled`
-       Boolean  indicating  whether  a primary key is
-       disabled. (not used)
+       Boolean  indicating  whether  a primary key is disabled. (not used)
 
        `secret`
-        Boolean indicating whether a key or subkey  is
-       a secret one.  (drop-subkey)
+        Boolean indicating whether a key or subkey is a secret one.  (drop-subkey)
 
-       `usage`  A string indicating  the usage flags for the
-       subkey, from the sequence ``ecsa?''.  For ex‐
-       ample,  a subkey capable of just signing and
-       authentication would be  an  exact  match for
-       ``sa''. (drop-subkey)
+       `usage`  A string indicating  the usage flags for the subkey, from the sequence `ecsa?`.  For example,  a subkey capable of just signing and authentication would be  an  exact  match for `sa`. (`drop-subkey`)
 
        `sig_created`
        `sig_created_d`
-       The  first is the timestamp a signature packet
-       was created.  The second is the same but given
-       as  an  ISO  date string,  e.g. "2016-08-17".
-       (drop-sig)
+       The  first is the timestamp a signature packet was created.  The second is the same but given
+       as  an  ISO  date string,  e.g. "`2016-08-17`". (`drop-sig`)
 
        `sig_algo`
-       A number with the public key  algorithm  of  a
-       signature packet. (drop-sig)
+       A number with the public key  algorithm  of  a  signature packet. (`drop-sig`)
 
        `sig_digest_algo`
-       A number with the digest algorithm of a signa‐
-       ture packet. (drop-sig)
+       A number with the digest algorithm of a signature packet. (`drop-sig)`
 
        `--export-options parameters`
-       This is a space or comma delimited string that  gives
-       options for exporting keys.  Options can be prepended
-       with a `no-' to give the opposite meaning.   The op‐
-       tions are:
+       This is a space or comma delimited string that  gives options for exporting keys.  Options can be prepended  with a `no-' to give the opposite meaning.   The options are:
 
        `export-local-sigs`
-       Allow  exporting key signatures marked as "lo‐
-       cal". This is not generally  useful  unless  a
-       shared keyring scheme is being used.  Defaults
-       to no.
+       Allow  exporting key signatures marked as "local". This is not generally  useful  unless  a shared keyring scheme is being used.  Defaults to no.
 
        `export-attributes`
-       Include attribute user IDs (photo IDs)  while
-       exporting. Not including attribute user IDs is
-       useful to export keys that  are  going  to  be
-       used  by  an OpenPGP program that does not ac‐
-       cept attribute user IDs.  Defaults to yes.
+       Include attribute user IDs (photo IDs)  while exporting. Not including attribute user IDs is useful to export keys that  are  going  to  be used  by  an OpenPGP program that does not accept attribute user IDs.  Defaults to yes.
 
        `export-sensitive-revkeys`
-       Include designated  revoker  information  that
-       was marked as "sensitive". Defaults to no.
+       Include designated  revoker  information  that was marked as "sensitive". Defaults to no.
 
        `backup`
        `export-backup`
-       Export for use as a backup.  The exported data
-       includes all data which is needed to  restore
-       the  key or keys later with GnuPG.  The format
-       is basically the OpenPGP format  but  enhanced
-       with  GnuPG  specific data.  All other contra‐
-       dicting options are overridden.
+       Export for use as a backup.  The exported data includes all data which is needed to  restore the key or keys later with GnuPG.  The format is basically the OpenPGP format  but  enhanced with  GnuPG  specific data.  All other contradicting options are overridden.
 
        `export-clean`
-       Compact (remove all signatures from) user IDs
-       on  the key being exported if the user IDs are
-       not usable. Also, do not export any signatures
-       that  are not usable. This includes signatures
-       that were issued by keys that are not  present
-       on  the  keyring. This  option is the same as
-       running the --edit-key command "clean"  before
-       export  except  that the local copy of the key
-       is not modified. Defaults to no.
+       Compact (remove all signatures from) user IDs on  the key being exported if the user IDs are not usable. Also, do not export any signatures that  are not usable. This includes signatures that were issued by keys that are not  present on  the  keyring. This  option is the same as running the `--edit-key` command "clean"  before export  except  that the local copy of the key is not modified. Defaults to no.
 
        `export-minimal`
-       Export the smallest key possible. This removes
-       all  signatures  except  the most recent self-
-       signature on each user ID. This option is the
-       same  as running the --edit-key command "mini‐
-       mize" before export except that the local copy
-       of the key is not modified. Defaults to no.
+       Export the smallest key possible. This removes all  signatures  except  the most recent self-signature on each user ID. This option is the same  as running the --edit-key command "minimize" before export except that the local copy of the key is not modified. Defaults to no.
 
        `export-pka`
-       Instead  of outputting the key material output
-       PKA records suitable  to  put  into  DNS  zone
-       files.   An ORIGIN line is printed before each
-       record to allow diverting the records  to the
-       corresponding zone file.
+       Instead  of outputting the key material output PKA records suitable  to  put  into  DNS  zone files.   An ORIGIN line is printed before each record to allow diverting the records  to the corresponding zone file.
 
        `export-dane`
-       Instead  of outputting the key material output
-       OpenPGP DANE records suitable to put into DNS
-       zone  files.  An ORIGIN line is printed before
-       each record to allow diverting the records  to
-       the corresponding zone file.
+       Instead  of outputting the key material output OpenPGP DANE records suitable to put into DNS  zone  files.  An ORIGIN line is printed before each record to allow diverting the records  to  the corresponding zone file.
 
        `--with-colons`
-       Print key listings delimited by colons. Note that the
-       output will be encoded in  UTF-8 regardless  of any
-       --display-charset setting. This format is useful when
-       GnuPG is called from scripts and other programs as it
-       is  easily machine parsed. The details of this format
-       are documented in the file  ‘doc/DETAILS’,  which  is
+       Print key listings delimited by colons. Note that the output will be encoded in  UTF-8 regardless  of any `--display-charset` setting. This format is useful when GnuPG is called from scripts and other programs as it is easily machine parsed. The details of this format are documented in the file  ‘`doc/DETAILS`’,  which  is
        included in the GnuPG source distribution.
 
        `--fixed-list-mode`
-       Do  not  merge  primary  user  ID  and primary key in
-       --with-colon listing mode and print all timestamps as
-       seconds  since  1970-01-01.  Since GnuPG 2.0.10, this
-       mode is always used and thus this option is obsolete;
-       it does not harm to use it though.
+       Do  not  merge  primary  user  ID  and primary key in `--with-colon` listing mode and print all timestamps as seconds  since  1970-01-01.  Since GnuPG 2.0.10, this mode is always used and thus this option is obsolete; it does not harm to use it though.
 
        `--legacy-list-mode`
-       Revert  to  the  pre-2.1 public key list mode.  This
-       only affects the human readable output  and  not the
-       machine  interface  (i.e.  --with-colons).  Note that
-       the legacy format does not convey  suitable  informa‐
-       tion for elliptic curves.
+       Revert  to  the  pre-2.1 public key list mode.  This only affects the human readable output  and  not the  machine  interface  (i.e.  --with-colons).  Note that the legacy format does not convey  suitable  information for elliptic curves.
 
        `--with-fingerprint`
-       Same  as the  command --fingerprint but changes only
-       the format of the output and  may  be  used  together
-       with another command.
+       Same  as the  command --fingerprint but changes only the format of the output and  may  be  used  together with another command.
 
        `--with-subkey-fingerprint`
-       If a fingerprint is printed for the primary key, this
-       option forces printing of  the  fingerprint  for all
-       subkeys.  This  could  also be achieved by using the
-       --with-fingerprint twice but  by using  this  option
-       along  with keyid-format "none" a compact fingerprint
-       is printed.
+       If a fingerprint is printed for the primary key, this option forces printing of  the  fingerprint  for all subkeys.  This  could  also be achieved by using the `--with-fingerprint` twice but  by using  this  option along  with keyid-format "none" a compact fingerprint is printed.
 
        `--with-icao-spelling`
-       Print the ICAO spelling of the fingerprint  in  addi‐
-       tion to the hex digits.
+       Print the ICAO spelling of the fingerprint  in  addition to the hex digits.
 
        `--with-keygrip`
-       Include  the keygrip in the key listings.  In --with-
-       colons mode this is  implicitly enable for  secret
+       Include  the keygrip in the key listings.  In `--with-colons` mode this is  implicitly enable for  secret
        keys.
 
        `--with-key-origin`
-       Include  the  locally  held information on the origin
-       and last update of  a  key  in  a  key  listing.  In
-       --with-colons mode this is always printed.  This data
-       is currently experimental and shall not be considered
-       part of the stable API.
+       Include  the  locally  held information on the origin and last update of  a  key  in  a  key  listing.  In
+       `--with-colons` mode this is always printed.  This data is currently experimental and shall not be considered part of the stable API.
 
        `--with-wkd-hash`
-       Print  a Web Key Directory identifier along with each
-       user ID in key listings.  This  is  an  experimental
+       Print  a Web Key Directory identifier along with each user ID in key listings.  This  is  an  experimental
        feature and semantics may change.
 
        `--with-secret`
-       Include  info  about  the presence of a secret key in
-       public key listings done with --with-colons.
+       Include  info  about  the presence of a secret key in public key listings done with --with-colons.
 
    ## OpenPGP protocol specific options
 
        `-t, --textmode`
        `--no-textmode`
-       Treat input files as  text  and  store  them  in the
-       OpenPGP canonical text form with standard "CRLF" line
-       endings. This also sets the necessary flags to inform
-       the  recipient  that  the encrypted or signed data is
-       text and may need its line endings converted back  to
-       whatever the local system uses. This option is useful
-       when communicating between two  platforms  that  have
-       different  line ending conventions (UNIX-like to Mac,
-       Mac to Windows, etc). --no-textmode disables this op‐
-       tion, and is the default.
+       Treat input files as  text  and  store  them  in the OpenPGP canonical text form with standard "CRLF" line endings. This also sets the necessary flags to inform the  recipient  that  the encrypted or signed data is text and may need its line endings converted back  to whatever the local system uses. This option is useful when communicating between two  platforms  that  have different  line ending conventions (UNIX-like to Mac, Mac to Windows, etc). --no-textmode disables this option, and is the default.
 
        `--force-v3-sigs`
        `--no-force-v3-sigs`
@@ -1244,293 +1135,176 @@ GnuPG  can  automatically locate and retrieve keys as needed using this option. 
 
        `--force-mdc`
        `--disable-mdc`
-       These options are obsolete and have no  effect  since
-       GnuPG  2.2.8.   The MDC is always used.  But note: If
-       the creation of a legacy non-MDC message  is  excep‐
-       tionally required,  the option --rfc2440 allows for
-       this.
+       These options are obsolete and have no  effect  since GnuPG  2.2.8.   The MDC is always used.  But note: If the creation of a legacy non-MDC message  is  excep‐
+       tionally required,  the option --rfc2440 allows for this.
 
        `--disable-signer-uid`
-       By default the user ID of the signing key is embedded
-       in  the  data signature. As of now this is only done
-       if the signing key has been specified with local-user
-       using  a mail address, or with sender.  This informa‐
-       tion can be helpful for verifier to locate  the  key;
-       see option --auto-key-retrieve.
+       By default the user ID of the signing key is embedded in  the  data signature. As of now this is only done if the signing key has been specified with local-user
+       using  a mail address, or with sender.  This information can be helpful for verifier to locate  the  key;
+       see option `--auto-key-retrieve`.
 
        `--include-key-block`
-       This  option  is used to embed the actual signing key
-       into a data signature.  The embedded key is  stripped
-       down  to a single user id and includes only the sign‐
-       ing subkey used to create the signature as well as as
-       valid  encryption subkeys.  All other info is removed
-       from the key to keep it and thus the signature small.
-       This  option  is the OpenPGP counterpart to the gpgsm
-       option --include-certs.
+       This  option  is used to embed the actual signing key into a data signature.  The embedded key is  stripped
+       down  to a single user id and includes only the signing subkey used to create the signature as well as as valid  encryption subkeys.  All other info is removed
+       from the key to keep it and thus the signature small. This  option  is the OpenPGP counterpart to the gpgsm option `--include-certs`.
 
        `--personal-cipher-preferences string`
-       Set  the list  of  personal  cipher  preferences  to
-       string.  Use gpg --version to get a list of available
-       algorithms, and use none to set no preference at all.
-       This allows the user to safely override the algorithm
-       chosen by the recipient key preferences, as GPG  will
-       only select an algorithm that is usable by all recip‐
-       ients.  The most highly ranked cipher in this list is
-       also used for the --symmetric encryption command.
+       Set  the list  of  personal  cipher  preferences  to string.  Use gpg --version to get a list of available algorithms, and use none to set no preference at all.  This allows the user to safely override the algorithm chosen by the recipient key preferences, as GPG  will only select an algorithm that is usable by all recipients.  The most highly ranked cipher in this list is
+       also used for the `--symmetric` encryption command.
 
        `--personal-digest-preferences string`
-       Set  the list  of  personal  digest  preferences  to
-       string.  Use gpg --version to get a list of available
-       algorithms, and use none to set no preference at all.
-       This allows the user to safely override the algorithm
-       chosen  by the recipient key preferences, as GPG will
-       only select an algorithm that is usable by all recip‐
-       ients.   The  most  highly ranked digest algorithm in
-       this list is also used when signing  without  encryp‐
-       tion (e.g. --clear-sign or --sign).
+       Set  the list  of  personal  digest  preferences  to string.  Use gpg --version to get a list of available algorithms, and use none to set no preference at all. This allows the user to safely override the algorithm chosen  by the recipient key preferences, as GPG will only select an algorithm that is usable by all recipients.   The  most  highly ranked digest algorithm in this list is also used when signing  without  encryption (e.g. `--clear-sign` or `--sign`).
 
        `--personal-compress-preferences string`
-       Set  the list of personal compression preferences to
-       string.  Use gpg --version to get a list of available
-       algorithms, and use none to set no preference at all.
-       This allows the user to safely override the algorithm
-       chosen  by the recipient key preferences, as GPG will
-       only select an algorithm that is usable by all recip‐
-       ients.   The most highly ranked compression algorithm
-       in this list is also used when there are no recipient
+       Set  the list of personal compression preferences to string.  Use gpg `--version` to get a list of available
+       algorithms, and use none to set no preference at all. This allows the user to safely override the algorithm chosen  by the recipient key preferences, as GPG will
+       only select an algorithm that is usable by all recipients.   The most highly ranked compression algorithm in this list is also used when there are no recipient
        keys to consider (e.g. --symmetric).
 
        `--s2k-cipher-algo name`
-       Use  name  as  the cipher algorithm for symmetric en‐
-       cryption with a passphrase if --personal-cipher-pref‐
-       erences and --cipher-algo are not given. The default
+       Use  name  as  the cipher algorithm for symmetric encryption with a passphrase if `--personal-cipher-preferences` and `--cipher-algo` are not given. The default
        is AES-128.
 
        `--s2k-digest-algo name`
-       Use name as the digest algorithm used to mangle the
-       passphrases for symmetric encryption.  The default is
+       Use name as the digest algorithm used to mangle the passphrases for symmetric encryption.  The default is
        SHA-1.
 
        `--s2k-mode n`
-       Selects how passphrases for symmetric encryption are
-       mangled. If  n  is 0 a plain passphrase (which is in
-       general not recommended) will be used,  a  1  adds  a
-       salt (which should not be used) to the passphrase and
-       a 3 (the default) iterates the whole process a number
+       Selects how passphrases for symmetric encryption are mangled. If  n  is 0 a plain passphrase (which is in
+       general not recommended) will be used,  a  1  adds  a salt (which should not be used) to the passphrase and a 3 (the default) iterates the whole process a number
        of times (see --s2k-count).
 
        `--s2k-count n`
-       Specify  how  many times the passphrases mangling for
-       symmetric encryption is  repeated.   This  value may
-       range  between  1024 and 65011712 inclusive.  The de‐
-       fault is inquired from gpg-agent.  Note that not all
-       values in the 1024-65011712 range are legal and if an
-       illegal value is selected, GnuPG will round up to the
+       Specify  how  many times the passphrases mangling for symmetric encryption is  repeated.   This  value may
+       range  between  `1024 `and `65011712` inclusive.  The default is inquired from gpg-agent.  Note that not all
+       values in the `1024-65011712` range are legal and if an illegal value is selected, GnuPG will round up to the
        nearest  legal value.  This option is only meaningful
-       if --s2k-mode is set to the default of 3.
+       if `--s2k-mode` is set to the default of 3.
 
    ## Compliance options
 
-       These options control what GnuPG is compliant to.  Only one
-       of  these options may be active at a time. Note that the de‐
-       fault setting of this is nearly always the correct one. See
-       the INTEROPERABILITY WITH OTHER OPENPGP PROGRAMS section be‐
-       low before using one of these options.
+       These options control what GnuPG is compliant to.  Only one of these options may be active at a time. Note that the de‐
+       fault setting of this is nearly always the correct one. See the INTEROPERABILITY WITH OTHER OPENPGP PROGRAMS section below before using one of these options.
 
        `--gnupg`
-       Use standard  GnuPG  behavior.  This  is essentially
-       OpenPGP behavior (see --openpgp), but with some addi‐
-       tional workarounds for common compatibility  problems
-       in different versions of PGP. This is the default op‐
-       tion, so it is not generally needed, but it  may  be
-       useful  to  override a different compliance option in
+       Use standard  GnuPG  behavior.  This  is essentially OpenPGP behavior (see --openpgp), but with some additional workarounds for common compatibility  problems
+       in different versions of PGP. This is the default option, so it is not generally needed, but it  may  be useful  to  override a different compliance option in
        the gpg.conf file.
 
        `--openpgp`
-       Reset all packet, cipher and digest options to strict
-       OpenPGP behavior. Use this option to reset all previ‐
-       ous options like --s2k-*,  --cipher-algo,  --digest-
-       algo and --compress-algo to OpenPGP compliant values.
-       All PGP workarounds are disabled.
+       Reset all packet, cipher and digest options to strict OpenPGP behavior. Use this option to reset all previous options like `--s2k-*`,  `--cipher-algo`,  `--digest-algo` and `--compress-algo` to OpenPGP compliant values. All PGP workarounds are disabled.
 
        `--rfc4880`
-       Reset all packet, cipher and digest options to strict
-       RFC-4880 behavior.  Note  that this is currently the
-       same thing as --openpgp.
+       Reset all packet, cipher and digest options to strict  RFC-4880 behavior.  Note  that this is currently the
+       same thing as `--openpgp`.
 
        `--rfc4880bis`
-       Enable experimental features from proposed updates to
-       RFC-4880.  This option can be used in addition to the
-       other compliance options.  Warning: The behavior may
-       change  with  any  GnuPG release and created keys or
-       data may not be usable with future GnuPG versions.
+       Enable experimental features from proposed updates to RFC-4880.  This option can be used in addition to the
+       other compliance options.  Warning: The behavior may change  with  any  GnuPG release and created keys or data may not be usable with future GnuPG versions.
 
        `--rfc2440`
-       Reset all packet, cipher and digest options to strict
-       RFC-2440 behavior.   Note  that by using this option
-       encryption packets are created in a legacy mode with‐
-       out  MDC protection.   This  is dangerous and should
-       thus only be used for experiments.  See  also  option
-       `--ignore-mdc-error`.
+       Reset all packet, cipher and digest options to strict RFC-2440 behavior.   Note  that by using this option encryption packets are created in a legacy mode with‐
+       out  MDC protection.   This  is dangerous and should thus only be used for experiments.  See  also  option`--ignore-mdc-error`.
 
        `--pgp6`
-       Set up all options to be as PGP 6 compliant as possi‐
-       ble. This restricts you to the ciphers IDEA  (if the
-       IDEA  plugin  is installed),  3DES,  and  CAST5, the
-       hashes MD5, SHA1 and RIPEMD160, and  the compression
-       algorithms  none and ZIP. This also disables --throw-
-       keyids, and making signatures with signing subkeys as
-       PGP  6 does not understand signatures made by signing
-       subkeys.
+       Set up all options to be as PGP 6 compliant as possible. This restricts you to the ciphers IDEA  (if the IDEA  plugin  is installed),  3DES,  and  CAST5, the
+       hashes MD5, SHA1 and RIPEMD160, and  the compression algorithms  none and ZIP. This also disables `--throw-keyids`, and making signatures with signing subkeys as
+       PGP  6 does not understand signatures made by signing subkeys.
 
        This option implies `--escape-from-lines`.
 
-       `--pgp7` Set up all options to be as PGP 7 compliant as possi‐
-       ble. This is identical to --pgp6 except that MDCs are
+       `--pgp7` Set up all options to be as PGP 7 compliant as possible. This is identical to --pgp6 except that MDCs are
        not disabled, and the list of  allowable ciphers  is
        expanded to add AES128, AES192, AES256, and TWOFISH.
 
-       `--pgp8` Set up all options to be as PGP 8 compliant as possi‐
-       ble. PGP 8 is a lot closer to  the  OpenPGP  standard
-       than  previous  versions of PGP, so all this does is
-       disable --throw-keyids and  set  --escape-from-lines.
-       All  algorithms  are  allowed  except for the SHA224,
-       SHA384, and SHA512 digests.
+       `--pgp8` Set up all options to be as PGP 8 compliant as possible. PGP 8 is a lot closer to  the  OpenPGP  standard than  previous  versions of PGP, so all this does is disable `--throw-keyids` and  set `--escape-from-lines`. All  algorithms  are  allowed  except for the SHA224, SHA384, and SHA512 digests.
 
        `--compliance string`
-       This option can be used instead of one of the options
-       above.   Valid values for string are the above option
-       names (without the double dash) and  possibly  others
-       as shown when using "help" for value.
+       This option can be used instead of one of the options above.   Valid values for string are the above option names (without the double dash) and  possibly  others as shown when using "help" for value.
 
    ## Doing things one usually doesn't want to do
 
        `-n`
        `--dry-run`
-       Don't make any changes (this is not completely imple‐
-       mented).
+       Don't make any changes (this is not completely implemented).
 
        `--list-only`
-       Changes the behaviour of some commands. This is  like
-       --dry-run  but  different in some cases. The semantic
-       of this option may be extended in  the  future.  Cur‐
-       rently  it  only skips the actual decryption pass and
-       therefore enables a fast listing of  the  encryption
-       keys.
+       Changes the behaviour of some commands. This is  like  `--dry-run`  but  different in some cases. The semantic
+       of this option may be extended in  the  future.  Currently  it  only skips the actual decryption pass and therefore enables a fast listing of  the  encryption keys.
 
        `-i`
        `--interactive`
        Prompt before overwriting any files.
 
        `--debug-level level`
-       Select  the  debug  level for investigating problems.
-       level may be a numeric value or by a keyword:
+       Select  the  debug  level for investigating problems. level may be a numeric value or by a keyword:
 
-       `none`   No debugging at all.  A value of less  than  1
-       may be used instead of the keyword.
+       `none`   No debugging at all.  A value of less  than  1 may be used instead of the keyword.
 
-      `basic`  Some  basic debug messages.  A value between 1
-       and 2 may be used instead of the keyword.
+      `basic`  Some  basic debug messages.  A value between 1 and 2 may be used instead of the keyword.
 
        `advanced`
-       More verbose debug messages.  A value  between
-       3 and 5 may be used instead of the keyword.
+       More verbose debug messages.  A value  between  3 and 5 may be used instead of the keyword.
 
-       `expert` Even  more detailed messages.  A value between
-       6 and 8 may be used instead of the keyword.
+       `expert` Even  more detailed messages.  A value between 6 and 8 may be used instead of the keyword.
 
-       `guru`   All of the debug messages you can get. A value
-       greater than 8 may be used instead of the key‐
-       word.  The creation of hash tracing  files  is
-       only enabled if the keyword is used.
+       `guru`   All of the debug messages you can get. A value greater than 8 may be used instead of the key‐
+       word.  The creation of hash tracing  files  is only enabled if the keyword is used.
 
-       How  these messages are mapped to the actual debugging flags
-       is not specified and may change with newer releases of  this
-       program.  They are however carefully selected to best aid in
-       debugging.
+       How  these messages are mapped to the actual debugging flags is not specified and may change with newer releases of this program.  They are however carefully selected to best aid in debugging.
 
        `--debug flags`
-       Set debugging flags. All flags are  or-ed  and  flags
-       may  be given in C syntax (e.g. 0x0042) or as a comma
-       separated list of flag names.  To get a list  of all
-       supported flags the single word "help" can be used.
+       Set debugging flags. All flags are  or-ed  and  flags may  be given in C syntax (e.g. 0x0042) or as a comma
+       separated list of flag names.  To get a list  of all  supported flags the single word "help" can be used.
 
        `--debug-all`
        Set all useful debugging flags.
 
        `--debug-iolbf`
-       Set  stdout  into line buffered mode.  This option is
-       only honored when given on the command line.
+       Set  stdout  into line buffered mode.  This option is only honored when given on the command line.
 
        `--faked-system-time epoch`
-       This option is only useful for testing; it  sets the
-       system  time back or forth to epoch which is the num‐
-       ber of seconds elapsed since the year 1970.  Alterna‐
-       tively  epoch  may be given as a full ISO time string
-       (e.g. "20070924T154812").
+       This option is only useful for testing; it  sets the system  time back or forth to epoch which is the number of seconds elapsed since the year 1970.  Alternatively  epoch  may be given as a full ISO time string (e.g. "20070924T154812").
 
-       If you suffix epoch with an exclamation mark (!), the
-       system time will appear to be frozen at the specified
+       If you suffix epoch with an exclamation mark (!), the system time will appear to be frozen at the specified
        time.
 
        `--enable-progress-filter`
-       Enable certain PROGRESS status outputs.  This  option
-       allows  frontends  to  display  a  progress indicator
-       while gpg is processing larger  files.   There  is  a
-       slight performance overhead using it.
+       Enable certain PROGRESS status outputs.  This  option allows  frontends  to  display  a  progress indicator
+       while gpg is processing larger  files.   There  is  a slight performance overhead using it.
 
        `--status-fd n`
-       Write  special  status strings to the file descriptor
-       n.  See the file DETAILS in the documentation  for  a
+       Write  special  status strings to the file descriptor n.  See the file DETAILS in the documentation  for  a
        listing of them.
 
        `--status-file file`
-       Same  as --status-fd, except the status data is writ‐
-       ten to file file.
+       Same  as --status-fd, except the status data is written to file file.
 
        `--logger-fd n`
-       Write log output to file descriptor  n  and  not  to
-       STDERR.
+       Write log output to file descriptor  n  and  not  to STDERR.
 
        `--log-file file`
        `--logger-file file`
-       Same  as --logger-fd, except the logger data is writ‐
-       ten to file  file.   Use ‘socket://’  to  log  to  a
-       socket. Note that in this version of gpg the option
-       has only an effect if --batch is also used.
+       Same  as --logger-fd, except the logger data is written to file  file.   Use `socket://` to  log  to  a
+       socket. Note that in this version of gpg the option has only an effect if --batch is also used.
 
        `--attribute-fd n`
-       Write attribute subpackets to the file descriptor  n.
-       This  is most useful for use with --status-fd, since
-       the status messages are needed to  separate  out the
-       various  subpackets  from the stream delivered to the
-       file descriptor.
+       Write attribute subpackets to the file descriptor  n. This  is most useful for use with --status-fd, since
+       the status messages are needed to  separate  out the  various  subpackets  from the stream delivered to the file descriptor.
 
        `--attribute-file file`
-       Same as --attribute-fd, except the attribute data  is
-       written to file file.
+       Same as --attribute-fd, except the attribute data is written to file file.
 
        `--comment string`
        `--no-comments`
-       Use  string  as  a comment string in cleartext signa‐
-       tures and ASCII armored messages or keys (see  --ar‐
-       mor).  The  default  behavior is not to use a comment
-       string. --comment may be repeated multiple  times  to
-       get  multiple  comment strings. --no-comments removes
-       all comments.  It is a good idea to keep the  length
-       of  a  single  comment  below  60 characters to avoid
-       problems with  mail  programs  wrapping  such  lines.
-       Note that comment lines, like all other header lines,
-       are not protected by the signature.
+       Use  string  as  a comment string in cleartext signatures and ASCII armored messages or keys (see  `--armor`).  The  default  behavior is not to use a comment
+       string. --comment may be repeated multiple  times  to get  multiple  comment strings. `--no-comments` removes all comments.  It is a good idea to keep the  length of  a  single  comment  below  60 characters to avoid problems with  mail  programs  wrapping  such  lines. Note that comment lines, like all other header lines, are not protected by the signature.
 
        `--emit-version`
        `--no-emit-version`
-       Force inclusion of the version string  in  ASCII ar‐
-       mored  output.   If  given  once only the name of the
-       program and the major number is emitted, given  twice
-       the  minor is also emitted, given thrice the micro is
-       added, and given four times an operating system iden‐
-       tification  is  also emitted.  --no-emit-version (de‐
+       Force inclusion of the version string  in  ASCII armored  output.   If  given  once only the name of the
+       program and the major number is emitted, given  twice the  minor is also emitted, given thrice the micro is
+       added, and given four times an operating system identification  is  also emitted.  `--no-emit-version` (de‐
        fault) disables the version line.
 
        `--sig-notation {name=value}`
