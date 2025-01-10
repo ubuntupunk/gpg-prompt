@@ -1,4 +1,7 @@
 # GNU Privacy Guard (GPG) Documentation
+extracted from the gnugpg manual
+by David Robert Lewis 
+aka ubuntupunk
 
 ## Table of Contents
 
@@ -686,7 +689,7 @@ export GPG_TTY=$(tty)
 
 ## Command List
 
-This is a list of all gpg commands documented in this file:
+This is a list of all gpg commands documented in this file that form the basis of the associated helper [prompt project](github.com/ubuntpunk/gpg-prompt):
 
 - `gpg --gen-key`
 - `gpg --full-gen-key`
