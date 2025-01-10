@@ -1030,7 +1030,7 @@ gpgconf --reload gpg-agent
    
 ## Command List
 
-This is a list of all gpg commands documented in this file:
+This is a list of all gpg commands documented in this file and used by the accompanying helper programmes and database:
 
 - `gpg --gen-key`
 - `gpg --full-gen-key`
