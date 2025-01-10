@@ -18,7 +18,7 @@ There are two versions to suit different user preferences:
 | Keyword        | Description                                                                    | Example     |
 | -------------- | ------------------------------------------------------------------------------ | ----------- |
 | `fzf-gpg` | Search for gpg**commands** and **shortcuts** for a given `query` | enter to open GPG Manual |
-| `rofi-gpg` | Search for gog**commands** and **shortcuts** for a given `query` | enter to open GPG Manual |
+| `rofi-gpg` | Search for gpg**commands** and **shortcuts** for a given `query` | enter to open GPG Manual |
 
 ## Features
 
