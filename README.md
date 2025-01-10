@@ -4,7 +4,7 @@
 <a href="https://www.buymeacoffee.com/ubuntupunk" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 
-This project provides two helpers to access to **GPG commands** and **shortcuts** via an **interactive manual** extracted from the official GnuGPG manul. 40 commands are made available from the GPG code-base in this way, allowing users to reference and learn the craft of GPG. Using the helpers may assist those wanting to learn more about GPG. This version is for posix-compliant systems that are able to install fzf/rofi, a seperate ulauncher extension is also available.
+This project provides two helpers to access to **GPG commands** and **shortcuts** via an **interactive manual** extracted from the official GnuGPG manual. 40 commands are made available from the GPG code-base in this way, allowing users to reference and learn the craft of GPG. Using the helpers may assist those wanting to learn more about GPG. This version is for posix-compliant systems that are able to install fzf/rofi, a seperate ulauncher extension is also available.
 
 ## Versions
 
