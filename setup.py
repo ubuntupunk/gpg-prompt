@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="gpg-prompt",
-    version="0.1.o"
+    version="0.1.1",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     include_package_data=True,
@@ -22,7 +22,7 @@ setup(
     package_data={
         'gpg_prompt': ['db/*.json', 'icon.png'],
     },
-    author="Ubuntpunk",
+    author="ubuntupunk",
     author_email="ubuntupunk@gmail.com",
     description="A gpg command prompter and manual browser using rofi/fzf",
     long_description=open('README.md').read(),

@@ -1,3 +1,29 @@
+Metadata-Version: 2.2
+Name: gpg-prompt
+Version: 0.1.1
+Summary: A gpg command prompter and manual browser using rofi/fzf
+Home-page: https://github.com/ubuntupunk/gpg-prompt
+Author: ubuntupunk
+Author-email: ubuntupunk@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: provides-extra
+Dynamic: requires-python
+Dynamic: summary
+
 # GPG Command Prompter | rofi / fzf launcher
 
 
