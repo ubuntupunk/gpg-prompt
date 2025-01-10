@@ -1,12 +1,12 @@
 # GNU Privacy Guard (GPG) Documentation
-extracted from the GnuPG manual first
+Extracted from the GnuPG manual first
 published by the GnuPG Project
-by David Robert Lewis
+This version by David Robert Lewis
 aka ubuntupunk
 
 This document accompanies several helper programmes and a database designed to assist and teach users about GPG,
-follow this link to access the [official manuals](https://www.gnupgp.org/documentation/manuals.html). 
-It has not been completely tested and validated, if any errors turn up, please open a pull request on the
+follow this link to access the [GPG official manuals](https://www.gnupgp.org/documentation/manuals.html). 
+Contents hav not been tested and validated, if any errors turn up, please open a pull request on the
 [gpg-prompt repo](https://github.com/ubuntupunk/gpg-prompt).
 
 ## Table of Contents
