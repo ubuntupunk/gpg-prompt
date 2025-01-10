@@ -4,7 +4,7 @@
 <a href="https://www.buymeacoffee.com/ubuntupunk" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 
-This project provides two helpers to access to **GPG commands** and **shortcuts** via an **interactive manual**. Using the helpers may assist those wanting to learn more about Vim. This version is for posix-compliant systems that are able to install fzf/rofi.
+This project provides two helpers to access to **GPG commands** and **shortcuts** via an **interactive manual** extracted from the official GnuGPG manul. 40 commands are made available from the GPG code-base in this way, allowing users to reference and learn the craft of GPG. Using the helpers may assist those wanting to learn more about GPG. This version is for posix-compliant systems that are able to install fzf/rofi, a seperate ulauncher extension is also available.
 
 ## Versions
 
@@ -17,15 +17,18 @@ There are two versions to suit different user preferences:
 
 | Keyword        | Description                                                                    | Example     |
 | -------------- | ------------------------------------------------------------------------------ | ----------- |
-| `gpg-vim` | Search for vim**commands** and **shortcuts** for a given `query` | enter to open GPG Manual |
-| `rofi-gpg` | Search for vim**commands** and **shortcuts** for a given `query` | enter to open GPG Manual |
+| `gpg-vim` | Search for gpg**commands** and **shortcuts** for a given `query` | enter to open GPG Manual |
+| `rofi-gpg` | Search for gog**commands** and **shortcuts** for a given `query` | enter to open GPG Manual |
 
 ## Features
 
 * Search for GPG Commands either by their description or their Hotkey.
-* Hitting enter on a command will redirect to [GPG Manual] on the same command.
+* Hitting enter on a command will redirect to [GPG Manual](gpg.md) on the same command.
 
-* Command fragments have not been tested and my not be fully functional, please report if any of them didn't work.
+## Disclaimer
+* This project is not related to the GnuPG Project and does not make any claims about the GPG software.
+* Since the Commands Database and its description fragments have not been fully tested and validated, they may not be functional, please report any issue here if any don't map the GnuPGP official manual.
+* If you have issues with GnuPG (GPG) please report that via the official GPG channels.
 
 ## Installation
 
@@ -38,7 +41,7 @@ There are two versions to suit different user preferences:
 - Rofi
 - Fzf
 
-### Installation
+### Recommended Installation
 
 ```python
 pip install gpg-prompt
