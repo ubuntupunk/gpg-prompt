@@ -6,8 +6,8 @@ aka ubuntupunk
 
 This document accompanies several helper programmes and a database designed to assist and teach users about GPG,
 follow this link to access the [GPG official manuals](https://www.gnupgp.org/documentation/manuals.html). 
-Disclaimer, this project is not related to the GnuPG Project and the contents below has not been tested and validated by the author. If any divergence from the official manual arises, please open a pull request at the
-[gpg-prompt repo](https://github.com/ubuntupunk/gpg-prompt). For bug issues with GPG software please use the official channels.
+Contents hav not been tested and validated, if any errors turn up, please open a pull request on the
+[gpg-prompt repo](https://github.com/ubuntupunk/gpg-prompt).
 
 ## Table of Contents
 
