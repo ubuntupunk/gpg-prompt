@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="gpg-prompt",
-    version="0.1.1",
+    version="0.1.2",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     include_package_data=True,
@@ -15,8 +15,8 @@ setup(
     },
     entry_points={
     'console_scripts': [
-            'fzf-gpg=gpg_prompt.fzf:main',
-            'rofi-gpg=gpg_prompt.rofi:main',
+            'gpg-fzf=gpg_prompt.fzf:main',
+            'gpg-rofi=gpg_prompt.rofi:main',
         ],
     },
     package_data={

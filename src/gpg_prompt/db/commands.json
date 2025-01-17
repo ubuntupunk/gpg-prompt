@@ -180,8 +180,8 @@
     "command": "gpg --keyserver keyserver.ubuntu.com --refresh-keys",
     "keywords": ["key", "keyserver", "refresh"],
     "description": "Refreshes all keys from a keyserver.",
-     "link": "#key-server-operations",
-     "validated": true
+    "link": "#key-server-operations",
+    "validated": true
   },
   {
     "name": "Encrypt File",
