@@ -1,6 +1,6 @@
 Metadata-Version: 2.2
 Name: gpg-prompt
-Version: 0.1.2
+Version: 0.1.3
 Summary: A gpg command prompter and manual browser using rofi/fzf
 Home-page: https://github.com/ubuntupunk/gpg-prompt
 Author: ubuntupunk
@@ -49,7 +49,7 @@ There are two versions to suit different user preferences:
 ## Features
 
 * Search for GPG Commands either by their description or their Hotkey.
-* Hitting enter on a command will redirect to [GPG Manual](https://github.com/ubuntupunk/gpg-prompt/src/gpg_prompt/assets/gpg.md) on the same command.
+* Hitting enter on a command will redirect to [GPG Manual](https://github.com/ubuntupunk/gpg-prompt/blob/main/src/gpg_prompt/assets/gpg.md) on the same command.
 * Future development may add a `cmd insert` function, allowing users to input a
   command directly into the terminal.
 

@@ -23,7 +23,7 @@ There are two versions to suit different user preferences:
 ## Features
 
 * Search for GPG Commands either by their description or their Hotkey.
-* Hitting enter on a command will redirect to [GPG Manual](https://github.com/ubuntupunk/gpg-prompt/src/gpg_prompt/assets/gpg.md) on the same command.
+* Hitting enter on a command will redirect to [GPG Manual](https://github.com/ubuntupunk/gpg-prompt/blob/main/src/gpg_prompt/assets/gpg.md) on the same command.
 * Future development may add a `cmd insert` function, allowing users to input a
   command directly into the terminal.
 
